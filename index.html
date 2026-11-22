@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pavan &amp; Anushka — December 3, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #ffffff 0%, #fff5f7 50%, #fce7ec 100%);
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --blush-primary: #d9778b;
+      --blush-dark: #b8566b;
+      --blush-soft: #fdf0f3;
+      --blush-border: #f5d0d8;
+      --text-main: #3b282c;
+      --text-muted: #7a5c63;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--blush-border);
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(217, 119, 139, 0.14);
+      width: 100%;
+      max-width: 460px;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #f8c8d2, #d9778b, #f8c8d2);
+    }
+
+    .progress {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blush-border);
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      width: 24px;
+      border-radius: 99px;
+      background: var(--blush-primary);
+    }
+
+    .step {
+      display: none;
+      animation: fadeSlide 0.45s ease forwards;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blush-primary);
+      margin-bottom: 12px;
+    }
+
+    h1, h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: 2.85rem;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 2.1rem;
+      margin-bottom: 12px;
+    }
+
+    .amp {
+      font-style: italic;
+      color: var(--blush-primary);
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 26px;
+    }
+
+    .date-pill {
+      display: inline-block;
+      background: var(--blush-soft);
+      border: 1px solid var(--blush-border);
+      color: var(--blush-dark);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 8px 18px;
+      border-radius: 99px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blush-primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 99px;
+      padding: 14px 32px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(217, 119, 139, 0.28);
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: var(--blush-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .arena {
+      position: relative;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .btn-yes {
+      z-index: 2;
+      min-width: 190px;
+    }
+
+    .btn-no {
+      background: #ffffff;
+      color: var(--text-muted);
+      border: 1.5px solid var(--blush-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      padding: 10px 24px;
+      font-size: 0.88rem;
+      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-no:hover {
+      background: var(--blush-soft);
+      color: var(--text-main);
+    }
+
+    .tease-msg {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--blush-dark);
+      min-height: 22px;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
+    .event-box {
+      background: var(--blush-soft);
+      border: 1px solid var(--blush-border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .event-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--blush-dark);
+      margin-bottom: 4px;
+    }
+
+    .event-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .event-meta {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .map-link {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--blush-dark);
+      text-decoration: none;
+      border-bottom: 1px solid var(--blush-primary);
+      padding-bottom: 1px;
+    }
+
+    .map-link:hover {
+      color: var(--text-main);
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 8px 12px;
+    }
+
+    .btn-ghost:hover {
+      color: var(--blush-dark);
+    }
+
+    .dress-code-card {
+      background: var(--blush-soft);
+      border: 1px solid var(--blush-border);
+      border-radius: 20px;
+      padding: 24px 20px;
+      margin-bottom: 22px;
+    }
+
+    .dress-code-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--blush-dark);
+      margin-bottom: 8px;
+    }
+
+    .dress-code-card p {
+      margin-bottom: 0;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="card">
+    <!-- Progress Indicator -->
+    <div class="progress">
+      <span class="dot active" id="dot-1"></span>
+      <span class="dot" id="dot-2"></span>
+      <span class="dot" id="dot-3"></span>
+      <span class="dot" id="dot-4"></span>
+    </div>
+
+    <!-- SCREEN 1: WELCOME -->
+    <section class="step active" id="step-1">
+      <div class="eyebrow">You Are Cordially Invited</div>
+      <h1>Pavan <span class="amp">&amp;</span> Anushka</h1>
+      <div class="date-pill">Thursday, December 3, 2026</div>
+      <p>
+        We’re making it official! Since you’re one of our favorite people, we’d love for you to join us for our intimate courthouse ceremony and celebratory dinner.
+      </p>
+      <button class="btn" onclick="goToStep(2)">Open Invitation</button>
+    </section>
+
+    <!-- SCREEN 2: THE RUNAWAY "NO" QUESTION -->
+    <section class="step" id="step-2">
+      <div class="eyebrow">Quick Check-In</div>
+      <h2>Just to make it official... you're coming, right?</h2>
+      <p>We already saved you a seat at the table, so there’s really only one right answer here.</p>
+
+      <div class="arena" id="arena">
+        <button class="btn btn-yes" onclick="goToStep(3)">Yes, wouldn't miss it!</button>
+        <button class="btn btn-no" id="noBtn">No</button>
+      </div>
+      <p class="tease-msg" id="teaseMsg"></p>
+    </section>
+
+    <!-- SCREEN 3: SCHEDULE & VENUES -->
+    <section class="step" id="step-3">
+      <div class="eyebrow">Thursday, December 3</div>
+      <h2>Where &amp; When</h2>
+
+      <div class="event-box">
+        <div class="event-tag">Part I • 4:30 PM</div>
+        <div class="event-title">The Courthouse Ceremony</div>
+        <div class="event-meta">
+          King County Courthouse<br>
+          Seattle, WA
+        </div>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=King+County+Courthouse+Seattle+WA" target="_blank" rel="noopener">Open in Google Maps →</a>
+      </div>
+
+      <div class="event-box">
+        <div class="event-tag">Part II • 6:00 PM</div>
+        <div class="event-title">Private Room Dinner</div>
+        <div class="event-meta">
+          Clove (Private Dining Room)<br>
+          Renton, WA
+        </div>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Clove+Renton+WA" target="_blank" rel="noopener">Open in Google Maps →</a>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-ghost" onclick="goToStep(2)">← Back</button>
+        <button class="btn" onclick="goToStep(4)">Dress Code &amp; Notes →</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: DRESS CODE & FINAL NOTE -->
+    <section class="step" id="step-4">
+      <div class="eyebrow">What to Wear</div>
+      <h2>Dress Code</h2>
+
+      <div class="dress-code-card">
+        <h3>Indian Attire</h3>
+        <p>
+          Celebrate with us in your favorite festive Indian wear—sarees, lehengas, anarkalis, kurtas, or sherwanis. Soft pastels, florals, and jewel tones are all warmly encouraged!
+        </p>
+      </div>
+
+      <p style="font-size: 0.9rem;">
+        Please plan to arrive at the courthouse by 4:15 PM for security check-in before we head down to Renton for dinner. We can’t wait to celebrate together!
+      </p>
+
+      <div class="nav-row">
+        <button class="btn-ghost" onclick="goToStep(3)">← Schedule</button>
+        <button class="btn" onclick="goToStep(1)">Replay Invite ↺</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function goToStep(stepNumber) {
+      document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.dot').forEach(el => el.classList.remove('active'));
+
+      document.getElementById('step-' + stepNumber).classList.add('active');
+      document.getElementById('dot-' + stepNumber).classList.add('active');
+    }
+
+    const noBtn = document.getElementById('noBtn');
+    const arena = document.getElementById('arena');
+    const teaseMsg = document.getElementById('teaseMsg');
+
+    const messages = [
+      "Nice try! That button is broken 😉",
+      "Error 404: 'No' not found.",
+      "Too slow! We already ordered your dinner.",
+      "Oops, slipped right out of reach!",
+      "Just click the pink button already 💕"
+    ];
+    let dodgeCount = 0;
+
+    function dodgeButton(e) {
+      if (e) e.preventDefault();
+
+      noBtn.style.position = 'absolute';
+
+      const arenaRect = arena.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = arenaRect.width - btnRect.width;
+      const maxY = arenaRect.height - btnRect.height;
+
+      const randomX = Math.max(0, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(0, Math.floor(Math.random() * maxY));
+
+      noBtn.style.left = randomX + 'px';
+      noBtn.style.top = randomY + 'px';
+
+      teaseMsg.textContent = messages[dodgeCount % messages.length];
+      dodgeCount++;
+    }
+
+    noBtn.addEventListener('mouseover', dodgeButton);
+    noBtn.addEventListener('touchstart', dodgeButton, { passive: false });
+    noBtn.addEventListener('click', dodgeButton);
+  </script>
+</body>
+</html>
